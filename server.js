@@ -54,16 +54,6 @@ app.get('/add-post-process', function (request, response) {
 
 })
 
-app.get('/', function (request, response) {
-
-	var formatted_posts = JSON.stringify(posts)
-	var debug = "debug"
-
-	response.render('view-post-page.pug',{
-		formatted_posts,formatted_posts
-	})
-  })
-
 app.listen(7777, () => {
 	console.log('Server listening at http://0.0.0.0:7777')
 })
