@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const jquery = require('jquery')
 
 const app = express()
 
@@ -14,6 +15,8 @@ const posts = [
 	},
 
 ]
+
+var num_questions;
 
 app.use(cors())
 
@@ -33,15 +36,20 @@ app.get('/posts', (request, response) => {
 app.set('view engine', 'pug')
 
 
+app.get('/', function(request, response){
+
+	response.render('test')
+})
+
 app.get('/add-post', function (request, response) {
 
-  response.render('add-post-page')
+  	response.render('add-post-page')
 })
 
 app.get('/add-post-process', function (request, response) {
 
   const message = request.query.message
-  var today = new Date();
+  var today = new Date()
 
   const time = (today.getHours() - 12) + ":" + today.getMinutes() + ":" + today.getSeconds()
 
@@ -54,6 +62,19 @@ app.get('/add-post-process', function (request, response) {
 
 })
 
+
+app.get('/questions-content', function (request, response) {
+
+	response.render('questions-content-page')
+})
+
+app.get('/questions-content-process', function (request, response) {
+
+	console.log(request.query.questions)
+})
+
 app.listen(7777, () => {
 	console.log('Server listening at http://0.0.0.0:7777')
 })
+
+
